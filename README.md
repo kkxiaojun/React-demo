@@ -2,6 +2,26 @@
 
 ## Interview Quesetions
 
+### chrome浏览器与IE浏览器内核的区别
+主要浏览器所使用的内核分类：
+Trident内核：IE，MaxThon
+Gecko内核：Netscape6及以上版本，fireFox
+Presto内核：Opera7及以上
+Webkit内核：Safari和chrome
+
+1. Trident: IE浏览器所用内核，对W3c标准支持不好。
+2. Gecko： Firefox所用内核。优点：功能强大／丰富，可以支持很多复杂网页效果和浏览器接口，但是要消耗很多的资源，耗内存
+3. Presto： Opera 内核，浏览网页速度最快的内核。对部分网页兼容性不够好
+4. Webkit：Webkit是safari采用的内核，对网页兼容性较低。Chrome是Webkit内核，但是采用的是自己开发的V8引擎（使用内联缓存来提高性能）
+
+### bind apply call的区别与联系
+共同点，三者均是改变this的指向，并能传参数。
+* bind：创建一个新的函数，当被调用时，将this关键字设置为提供的值。
+* apply：func.apply(thisArg, [argsArray])
+* call：fun.call(thisArg, arg1, arg2, ...)
+### js super关键字
+super关键字用于调用一个对象的父对象上的函数
+注意：在构造函数中使用时，super关键字将单独出现，并且必须在使用this关键字之前使用。
 ### 职业规划
 
 
