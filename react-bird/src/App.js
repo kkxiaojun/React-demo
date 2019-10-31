@@ -103,7 +103,6 @@ function UserGreeting(props) {
   return <h1>Welcome back.</h1>
 }
 
-
 // 手控组件
 class NameForm extends React.Component {
   constructor(props) {
@@ -143,4 +142,91 @@ class NameForm extends React.Component {
   }
 }
 
-export default NameForm;
+// 温度计算器组件
+
+// 是否煮沸
+function BoilingVerdict(props) {
+  if(props.celsius >= 100) {
+    return <p>The water would boil.</p>
+  }
+  return <p>The water would not boil</p>
+}
+
+function toCelsius(fahrenheit) {
+  return (fahrenheit - 32) * 5 / 9;
+}
+
+function toFahrenheit(celsius) {
+  return (celsius * 9 / 5) + 32;
+}
+
+function tryConvert(temperature, convert) {
+  const input = parseFloat(temperature);
+  if (Number.isNaN(input)) {
+    return '';
+  }
+  const output = convert(input);
+  const rounded = Math.round(output * 1000) / 1000;
+  return rounded.toString();
+}
+
+const scaleNames = {
+  c: 'Celsius',
+  f: 'Fahrenheit'
+}
+class TemperatureInput extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(e) {
+    this.props.onTemperatureChange(e.event.target)
+  }
+
+  render() {
+    let temp = this.props.temperature
+    let scale = this.props.scale
+    return (
+      <fieldset>
+        <legend>Enter { scaleNames[scale] }  in input</legend>
+        <input value={temp} onChange={this.handleChange}></input>
+        <BoilingVerdict celsius={temp}/>
+      </fieldset>
+    )
+  }
+}
+
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <div>
+        <TemperatureInput scale='c'/>
+        <TemperatureInput scale='f'/>
+      </div>
+    )
+  }
+}
+
+function FancyBorder(props) {
+  return (
+    <div className={'FancyBorder FancyBorder-' + props.color}>
+      {props.children}
+    </div>
+  );
+}
+
+function WelcomeDialog() {
+  return (
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        Welcome
+      </h1>
+    </FancyBorder>
+  )
+}
+
+export default WelcomeDialog;
