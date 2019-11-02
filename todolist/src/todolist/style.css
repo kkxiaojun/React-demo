@@ -1,3 +1,31 @@
-.container {
-  background: #ccc;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  height: 50px;
+  padding: 5px;
+  background: rgba(47,47,47,0.98);
+}
+.header-left {
+  flex: 2;
+  line-height: 50px;
+  font-size: 24px;
+  color: #ddd;
+}
+.header-right {
+  flex: 3;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.header-right input {
+  width: 80%;
+  height: 24px;
+  text-indent: 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.24), 0 1px 6px rgba(0,0,0,0.45) inset;
+  border: none;
+}
+.header-right input:focus {
+  outline: none;
 }
