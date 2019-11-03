@@ -5,6 +5,7 @@ import './style.css'
 class ToDoList extends Component {
   constructor(props) {
     super(props)
+    // 当props或者state发生改变，render函数会重新执行
     this.state = { 
       mapList: [
         {
