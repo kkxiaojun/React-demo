@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import TodoItem from './TodoItem'
 import './style.css'
+import axios from 'axios'
 
 class ToDoList extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class ToDoList extends Component {
     this.btnKeyPress = this.btnKeyPress.bind(this)
   }
   render() {
+    console.log('render')
     return (
       <Fragment>
         {/* header */}
@@ -31,7 +33,7 @@ class ToDoList extends Component {
           </div>
           <div className="header-right">
             <input placeholder="添加ToDo" value={ this.state.inputValue } onKeyPress={this.btnKeyPress} onChange = { this.btnInputValue } />
-            <button onClick={ this.btnAdd }>提交</button>
+            {/* <button onClick={ this.btnAdd }>提交</button> */}
           </div>
         </header>
         {/* 列表 */}
@@ -77,6 +79,16 @@ class ToDoList extends Component {
     if(e.nativeEvent.keyCode === 13) {
       this.btnAdd(e)
     }
+  }
+  // 发送ajax请求
+  componentDidMount() {
+    axios.get('/api/todolist')
+    .then(res => {
+      console.log(res)
+    })
+    .catch(() => {
+      console.log('error')
+    })
   }
 }
 

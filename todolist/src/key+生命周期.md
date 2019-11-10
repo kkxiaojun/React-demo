@@ -1,0 +1,14 @@
+# key
+> 钥匙帮助反应识别哪些项目已经改变,添加或删除。钥匙要给数组元素内的元素一个稳定的身份
+
+# 生命周期函数
+`componentWillMount`在组件挂载到页面前, 自动执行
+`componentDidMount`在组件挂载到页面后，自动执行
+
+## 当组件实例被创建并插入 DOM 中时，其生命周期调用顺序如下：
+
+1. constructor()
+2. static getDerivedStateFromProps()
+3. render()
+4. componentDidMount()
+
