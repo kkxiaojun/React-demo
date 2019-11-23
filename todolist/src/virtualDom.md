@@ -60,8 +60,47 @@
 理解：
 JSX -> createElement -> 虚拟DOM（JS对象）-> 真实DOM
 
+如果没有JSX，我们也可以写html页面，只是需要使用createElement直接写，JSX模版只是为了方便写模板
+
 # 虚拟DOM的diff算法（diffrence）
-寻找虚拟DOM的差异
+目的：寻找原始虚拟DOM和新的虚拟DOM的差异
 
+1. 同层比对，只要父节点不一样，就替换，从上往下
+2. keys，提升虚拟DOM比对的性能，设置为index会导致虚拟DOM对比不稳定（因为无法保证新的虚拟DOM的key与原始的虚拟DOM的key保持一致）
+```javascript
+// 用index作为key
+ this.state.mapList.map((item, index) => {
+  return (
+    <TodoItem 
+    content={item} 
+    index={index} 
+    key={index}
+    deleteItem={this.btnDelete} />
+  )
+})
 
+// key值与当前项的对应关系：
+a: 0
+b: 1
+c: 2
+
+// 如果删除 a , 原始虚拟dom中key值与当前项的对应关系
+b:1
+c:2
+
+// 但是重新计算的的虚拟dom中key值与当前项目的对应关系为
+b:0
+c:1
+
+// 会发现，原始虚拟dom与新的虚拟dom，key值对应关系不一致，就会导致不稳定
+
+```
+需要补充：
+1. 图文例子说明
+2. 简单代码描述
+3. 总结
+
+猜想，是用key值生成一张缓存映射表，当新的虚拟dom生成时，就根据key去缓存映射表中找出对应的（命中缓存，304），进行比较。如果找不到，就按正常的流程找。
+
+# 
 
