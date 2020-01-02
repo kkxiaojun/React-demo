@@ -14,3 +14,29 @@
 1. 样式应该用`className`代替`class`
 2. `dangerouslySetInnerHTML`不会被转义。`JSX`默认是转义的。
 3. `for`应该用`htmlFor`代替
+
+## redux
+1. store. 存储数据
+2. action. 动作
+3. reducer 处理逻辑，处理数据
+
+`store`
+```javascript
+const store = {
+  list: []
+}
+```
+
+`action`
+```javascript
+const action = {
+  type: 'change_value',
+  value: 1
+}
+store.dispatch(action)
+```
+
+`reducer`
+```javascript
+(previousState, action) => newState
+```
