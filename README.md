@@ -39,4 +39,10 @@ store.dispatch(action)
 `reducer`
 ```javascript
 (previousState, action) => newState
+
+subscribe() // 监听每次修改的情况
 ```
+**组件**
+1. UI组件。纯渲染组件，不做逻辑擦操作。
+2. 容器组件。处理数据和逻辑。
+3. 无状态组件。类似纯函数。
