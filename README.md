@@ -46,3 +46,49 @@ subscribe() // 监听每次修改的情况
 1. UI组件。纯渲染组件，不做逻辑擦操作。
 2. 容器组件。处理数据和逻辑。
 3. 无状态组件。类似纯函数。
+
+## react-redux
+`connect`用于从 UI 组件生成容器组件
+```javascript
+import { connect } from 'react-redux'
+const VisibleTodoList = connect()(TodoList);
+```
+
+1. 输入逻辑：数据state通过`mapStateToProps`传输。
+2. 输出逻辑：用户发出的动作如何变为action，通过`mapDispatchToProps`传输。
+```javascript
+import { connect } from 'react-redux'
+
+const VisibleTodoList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoList)
+```
+
+`mapStateToProps`可以从state算出 todos 的值
+```javascript
+const mapStateToProps = (state) => {
+  return {
+    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  }
+}
+```
+`mapDispatchToProps`用来建立 UI 组件的参数到store.dispatch方法的映射
+
+```javascript
+const mapDispatchToProps = {
+  onClick: (filter) => {
+    type: 'SET_VISIBILITY_FILTER',
+    filter: filter
+  };
+}
+```
+
+`<Provider>`
+connect方法生成容器组件以后，需要让容器组件拿到state对象，才能生成 UI 组件的参数。
+1. 方法一。state对象作为参数，传入容器组件，但是层级深很麻烦。
+2. 方法二。React-Redux 提供Provider组件，可以让容器组件拿到state。
+
+```javascript
+
+```
