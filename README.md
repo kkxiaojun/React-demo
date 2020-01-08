@@ -69,6 +69,9 @@ export const getToDoList = () => {
 }
 ```
 ## react-saga
+果按照原始的redux工作流程，当组件中产生一个action后会直接触发reducer修改state，reducer又是一个纯函数，也就是不能再reducer中进行异步操作；
+而往往实际中，组件中发生的action后，在进入reducer之前需要完成一个异步任务,比如发送ajax请求后拿到数据后，再进入reducer,显然原生的redux是不支持这种操作的
+
 
 
 ## react-redux
