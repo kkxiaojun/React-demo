@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import TodoItem from './TodoItem'
 import './style.css'
-import axios from 'axios'
 import store from '../store/index'
-import { getInputChangeAction, deleteToDoItem, addToDoItem } from '../store/actionCreators'
+import { getInputChangeAction, deleteToDoItem, addToDoItem, getToDoList } from '../store/actionCreators'
 
 class ToDoList extends Component {
   constructor(props) {
@@ -99,13 +98,8 @@ class ToDoList extends Component {
   }
   // 发送ajax请求
   componentDidMount() {
-    axios.get('/api/todolist')
-    .then(res => {
-      console.log(res)
-    })
-    .catch(() => {
-      console.log('error')
-    })
+    const action = getToDoList()
+    store.dispatch(action)
   }
 }
 

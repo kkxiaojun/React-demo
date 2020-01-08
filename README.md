@@ -47,6 +47,30 @@ subscribe() // 监听每次修改的情况
 2. 容器组件。处理数据和逻辑。
 3. 无状态组件。类似纯函数。
 
+## react-thunk
+发送异步请求，获取数据`axios`
+
+过程：
+1. 引入`redux-thunk`中间件
+2. 在`actionCreators`中创建返回值是函数的`action`
+3. 在`componentDidMount`生命周期中发送`action`，`action`是函数
+4. 在`action`中，发送异步请求，接收返回数据，再调用action改变store
+
+`actionCreators`
+```javascript
+export const getToDoList = () => {
+  return (dispatch) => {
+    axios.get('./list.json').then(res => {
+      console.log(res.data)
+      const action = getInputChangeAction(res.data)
+      dispatch(action)
+    })
+  }
+}
+```
+## react-saga
+
+
 ## react-redux
 `connect`用于从 UI 组件生成容器组件
 ```javascript

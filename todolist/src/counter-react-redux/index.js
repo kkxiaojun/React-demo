@@ -7,7 +7,7 @@ import { Provider, connect } from 'react-redux'
 // React component
 class Counter extends Component {
   render() {
-    const { value, onIncreaseClick, onDecreaseClick } = this.props
+    const { value, onIncreaseClick } = this.props
     return (
       <div>
         <span>{value}</span>
