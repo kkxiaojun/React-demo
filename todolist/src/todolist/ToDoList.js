@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import TodoItem from './TodoItem'
 import './style.css'
 import store from '../store/index'
-import { getInputChangeAction, deleteToDoItem, addToDoItem, getToDoList } from '../store/actionCreators'
+import { getInitList, getInputChangeAction, deleteToDoItem, addToDoItem } from '../store/actionCreators'
 
 class ToDoList extends Component {
   constructor(props) {
@@ -98,7 +98,7 @@ class ToDoList extends Component {
   }
   // 发送ajax请求
   componentDidMount() {
-    const action = getToDoList()
+    const action = getInitList()
     store.dispatch(action)
   }
 }
